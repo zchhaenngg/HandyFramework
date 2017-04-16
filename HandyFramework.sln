@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handy.Framework", "Handy.Framework\Handy.Framework.csproj", "{68442370-1F1E-4970-83ED-05BCB8C4B613}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handy.TestFramework", "Handy.TestFramework\Handy.TestFramework.csproj", "{9F227A8E-57B1-4A94-A6C0-4870FF7C4AAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{68442370-1F1E-4970-83ED-05BCB8C4B613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68442370-1F1E-4970-83ED-05BCB8C4B613}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68442370-1F1E-4970-83ED-05BCB8C4B613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F227A8E-57B1-4A94-A6C0-4870FF7C4AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F227A8E-57B1-4A94-A6C0-4870FF7C4AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F227A8E-57B1-4A94-A6C0-4870FF7C4AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F227A8E-57B1-4A94-A6C0-4870FF7C4AAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
