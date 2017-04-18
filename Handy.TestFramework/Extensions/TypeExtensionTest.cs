@@ -1,5 +1,6 @@
 ﻿using System;
 using Handy.Framework.Extensions;
+using Handy.Framework.System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Handy.TestFramework.Extensions
@@ -8,13 +9,13 @@ namespace Handy.TestFramework.Extensions
     public class TypeExtensionTest
     {
         [TestMethod]
-        public void IsString()
+        public void Test()
         {
-            var t1 = DateTime.MinValue;
-            var t = DateTime.MinValue.ToUniversalTime();
-            var t2 = DateTime.Parse("2017-09-12");
-             var t3 = t2.ToUniversalTime();
-            Assert.AreEqual(t1, t);
+            var a = Convert.ChangeType("5", typeof(short));
+            var b = Convert.ChangeType(UTCTime.Now, typeof(DateTime));
+            var c = Convert.ChangeType(UTCTime.Now, typeof(string));
+
+            var a132 = Convert.ChangeType("132", typeof(int));
         }
     }
 }

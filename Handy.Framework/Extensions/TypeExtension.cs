@@ -144,7 +144,7 @@ namespace Handy.Framework.Extensions
         /// <returns></returns>
         public static bool IsNullable(this Type type) => !type.IsValueType || type.Name.Equals(typeof(Nullable<>).Name);
         /// <summary>
-        /// 返回指定的可空类型的基础类型参数。
+        /// returns the type's underlying type if it is nullable,otherwise returns itself.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
