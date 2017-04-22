@@ -19,41 +19,15 @@ namespace Handy.Framework.System
         /// <typeparam name="T"></typeparam>
         /// <param name="item"></param>
         /// <returns></returns>
-        ///  异常:
-        ///   T:System.InvalidCastException:
-        ///     不支持此转换。- 或 -value 是 null 并且 conversionType 是一个值类型。- 或 -value 不实现 System.IConvertible
-        ///     接口。
-        ///
-        ///   T:System.FormatException:
-        ///    value 的格式不是 conversionType 可识别的格式。
-        ///
-        ///   T:System.OverflowException:
-        ///     value 表示不在 conversionType 的范围内的数字。
-        ///
-        ///   T:System.ArgumentNullException:
-        ///     conversionType 为 null。
         public static T ConvertTo<T>(object item)
         {
             return (T)ConvertTo(item, typeof(T));
         }
         /// <summary>
-        /// Converts the item to an equivalent destination type value.值类型需要实现IConvertible接口，非值类型返回自身。
+        /// Converts the item to an equivalent destination type value by using Convert.ChangeType method.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="type"></param>
-        ///  异常:
-        ///   T:System.InvalidCastException:
-        ///     不支持此转换。- 或 -value 是 null 并且 conversionType 是一个值类型。- 或 -value 不实现 System.IConvertible
-        ///     接口。
-        ///
-        ///   T:System.FormatException:
-        ///    value 的格式不是 conversionType 可识别的格式。
-        ///
-        ///   T:System.OverflowException:
-        ///     value 表示不在 conversionType 的范围内的数字。
-        ///
-        ///   T:System.ArgumentNullException:
-        ///     conversionType 为 null。
         /// <returns></returns>
         protected static object ConvertTo(object value, Type type)
         {
@@ -70,21 +44,17 @@ namespace Handy.Framework.System
             }
             else
             {
-                var destination = type.GetUnderlyingType();
-                if (destination.IsString())
+                if (type.IsValueType)
                 {
-                    return value.ToString();
+                    if (type.IsNullableGeneric())
+                    {
+                        type = Nullable.GetUnderlyingType(type);
+                    }//ChangeType转换如 32->int?类型会失败
+                    return Convert.ChangeType(value, type);
                 }
                 else
                 {
-                    if (!destination.IsValueType)
-                    {
-                        return value;
-                    }
-                    else
-                    {
-                        return Convert.ChangeType(value, destination);
-                    }
+                    return Convert.ChangeType(value, type);
                 }
             }
         }
@@ -104,21 +74,10 @@ namespace Handy.Framework.System
             else
             {
                 var list = new List<TValue>();
-                var isNullable = typeof(TValue).IsNullable();
                 foreach (var item in coll)
                 {
-                    if (item == null)
-                    {
-                        if (isNullable)
-                        {
-                            list.Add(default(TValue));
-                        }
-                    }
-                    else
-                    {
-                        var t = ConvertTo<TValue>(item);
-                        list.Add(t);
-                    }
+                    var t = ConvertTo<TValue>(item);
+                    list.Add(t);
                 }
                 return list;
             }

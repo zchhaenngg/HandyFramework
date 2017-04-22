@@ -138,23 +138,16 @@ namespace Handy.Framework.Extensions
         /// <returns></returns>
         public static bool IsNBool(this Type type) => type == typeof(bool?);
         /// <summary>
-        /// 
+        /// Whether type is Nullable &lt;&gt;
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool IsNullable(this Type type) => !type.IsValueType || type.Name.Equals(typeof(Nullable<>).Name);
+        public static bool IsNullableGeneric(this Type type) => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         /// <summary>
-        /// returns the type's underlying type if it is nullable,otherwise returns itself.
+        /// Whether the instance of the type can be null.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static Type GetUnderlyingType(this Type type)
-        {
-            if (type.IsNullable())
-            {
-                return Nullable.GetUnderlyingType(type);
-            }
-            return type;
-        }
+        public static bool IsNullable(this Type type) => type.IsValueType ? type.IsNullableGeneric() : true;
     }
 }

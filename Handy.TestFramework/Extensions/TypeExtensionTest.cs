@@ -9,13 +9,34 @@ namespace Handy.TestFramework.Extensions
     public class TypeExtensionTest
     {
         [TestMethod]
-        public void Test()
+        public void TestChangeType()
         {
-            var a = Convert.ChangeType("5", typeof(short));
-            var b = Convert.ChangeType(UTCTime.Now, typeof(DateTime));
-            var c = Convert.ChangeType(UTCTime.Now, typeof(string));
+            {
+                Convert.ChangeType(UTCTime.Now, typeof(string));
+                Convert.ChangeType(UTCTime.Now, typeof(DateTime));
+            }
+            {
+                Convert.ChangeType("123", typeof(int));
+                Convert.ChangeType(123.55, typeof(int));
+            }
+            try
+            {
+                Convert.ChangeType("123.55", typeof(int));
+                Assert.IsFalse(true);
+            }
+            catch (FormatException)
+            {
 
-            var a132 = Convert.ChangeType("132", typeof(int));
+            }
+            try
+            {
+                Convert.ChangeType(123, typeof(int?));
+                Assert.IsFalse(true);
+            }
+            catch (InvalidCastException)
+            {
+
+            }
         }
     }
 }
