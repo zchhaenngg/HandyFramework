@@ -65,7 +65,7 @@ namespace Handy.Framework.System
         /// <typeparam name="TValue"></typeparam>
         /// <param name="coll"></param>
         /// <returns></returns>
-        public static List<TValue> ToList<TValue>(ICollection coll)
+        public static List<TValue> ToList<TValue>(IEnumerable coll)
         {
             if (coll == null)
             {
