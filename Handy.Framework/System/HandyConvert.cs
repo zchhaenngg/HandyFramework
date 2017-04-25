@@ -29,7 +29,7 @@ namespace Handy.Framework.System
         /// <param name="value"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected static object ConvertTo(object value, Type type)
+        public static object ConvertTo(object value, Type type)
         {
             if (value == null)
             {
