@@ -83,5 +83,119 @@ namespace Handy.Framework.System
             }
         }
 
+        public static dynamic ToList(IEnumerable coll, Type valueType)
+        {
+
+            if (valueType.IsValueType)
+            {
+                if (valueType.IsShort())
+                {
+                    return ToList<short>(coll);
+                }
+                else if (valueType.IsNShort())
+                {
+                    return ToList<short?>(coll);
+                }
+                else if (valueType.IsInt())
+                {
+                    return ToList<int>(coll);
+                }
+                else if (valueType.IsNInt())
+                {
+                    return ToList<int?>(coll);
+                }
+                else if (valueType.IsDouble())
+                {
+                    return ToList<double>(coll);
+                }
+                else if (valueType.IsNDouble())
+                {
+                    return ToList<double?>(coll);
+                }
+                else if (valueType.IsFloat())
+                {
+                    return ToList<float>(coll);
+                }
+                else if (valueType.IsNFloat())
+                {
+                    return ToList<float?>(coll);
+                }
+                else if (valueType.IsDateTime())
+                {
+                    return ToList<DateTime>(coll);
+                }
+                else if (valueType.IsNDateTime())
+                {
+                    return ToList<DateTime?>(coll);
+                }
+                else if (valueType.IsLong())
+                {
+                    return ToList<long>(coll);
+                }
+                else if (valueType.IsNLong())
+                {
+                    return ToList<long?>(coll);
+                }
+                else if (valueType.IsChar())
+                {
+                    return ToList<char>(coll);
+                }
+                else if (valueType.IsNChar())
+                {
+                    return ToList<char?>(coll);
+                }
+                else if (valueType.IsByte())
+                {
+                    return ToList<byte>(coll);
+                }
+                else if (valueType.IsNByte())
+                {
+                    return ToList<byte?>(coll);
+                }
+                else if (valueType.IsDecimal())
+                {
+                    return ToList<decimal>(coll);
+                }
+                else if (valueType.IsNDecimal())
+                {
+                    return ToList<decimal?>(coll);
+                }
+                else if (valueType.IsBool())
+                {
+                    return ToList<bool>(coll);
+                }
+                else if (valueType.IsNBool())
+                {
+                    return ToList<bool?>(coll);
+                }
+                else
+                {
+                    throw new NotSupportedException(valueType.Name);
+                }
+            }
+            else
+            {
+                if (valueType.IsString())
+                {
+                    return ToList<string>(coll);
+                }
+                else
+                {
+                    if (coll == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        var list = new List<dynamic>();
+                        foreach (var item in coll)
+                        {
+                            list.Add(item);
+                        }
+                        return list;
+                    }
+                }
+            }
+        }
     }
 }

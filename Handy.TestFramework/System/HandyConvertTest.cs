@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Handy.Framework.System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,6 +8,11 @@ namespace Handy.TestFramework.System
     [TestClass]
     public class HandyConvertTest
     {
+        class HandyConvertTest_A
+        {
+            public string a { get; set; }
+        }
+
         [TestMethod]
         public void TestConvertTo()
         {
@@ -48,6 +54,22 @@ namespace Handy.TestFramework.System
             Assert.IsNull(HandyConvert.ToList<string>(null));
             Assert.IsTrue(HandyConvert.ToList<string>(new string[] { "", "dd" }).Count == 2);
             Assert.IsTrue(HandyConvert.ToList<int>(new string[] { "456", "123" }).Count == 2);
+
+            var list = HandyConvert.ToList(new string[] { "", "dd" }, typeof(string));
+            var list2 = HandyConvert.ToList(new HandyConvertTest_A[] 
+            {
+                new HandyConvertTest_A
+                {
+                    a ="aa"
+                },
+                new HandyConvertTest_A
+                {
+                    a ="bb"
+                }
+            }, typeof(HandyConvertTest_A));
+            var list11 = list as List<string>;
+            var list22 = list2 as List<dynamic>;
+            Assert.IsTrue(true);
         }
     }
 }

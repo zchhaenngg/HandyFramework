@@ -20,19 +20,19 @@ namespace Handy.Framework.Expressions
             }
             else
             {
-                if (value is IEnumerable)
+                if (value.GetType().IsString())
                 {
-                    foreach (var item in value as IEnumerable)
-                    {
-                        return false;
-                    }
-                    return true;
+                    return string.IsNullOrWhiteSpace(value as string);
                 }
                 else
-                {
-                    if (value.GetType().IsString())
+                {//string inherits IEnumerable
+                    if (value is IEnumerable)
                     {
-                        return string.IsNullOrWhiteSpace(value as string);
+                        foreach (var item in value as IEnumerable)
+                        {
+                            return false;
+                        }
+                        return true;
                     }
                     else
                     {

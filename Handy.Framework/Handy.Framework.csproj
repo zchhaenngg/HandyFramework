@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Expressions\Conditions.cs" />
+    <Compile Include="Expressions\Model\Lambda.cs" />
+    <Compile Include="Expressions\Lambdas.cs" />
+    <Compile Include="Expressions\Model\LambdaType.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\ExceptionExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
